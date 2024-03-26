@@ -1,6 +1,7 @@
 {
   "cmake.debugConfig": {
-    "args": [2020, "../.."],
+    // "args": [2020, "../.."],
+    // "args": [10]
     // "cwd": "${workspaceFolder}/src",
   },
   "files.associations": {

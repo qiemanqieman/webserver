@@ -156,6 +156,23 @@ static void *acceptClient(void *arg)
     return nullptr;
   }
 
+  // Get client IP and port
+  struct sockaddr_in clientAddr;
+  socklen_t addrLen = sizeof(clientAddr);
+  getpeername(cfd, (struct sockaddr *)&clientAddr, &addrLen);
+  char clientIP[INET_ADDRSTRLEN];
+  inet_ntop(AF_INET, &(clientAddr.sin_addr), clientIP, INET_ADDRSTRLEN);
+  int clientPort = ntohs(clientAddr.sin_port);
+  ofstream ofs;
+  ofs.open("./log/clients.txt", ios::out|ios::app);
+  if (!ofs.is_open())
+  {
+    perror("open log file error");
+    return nullptr;
+  }
+  ofs << format("client IP: [{}], port: [{}]\n", clientIP, clientPort);
+  ofs.close();
+
   // set cfd is noblock
   int flag = fcntl(cfd, F_GETFL);
   flag |= O_NONBLOCK;

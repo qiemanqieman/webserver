@@ -7,12 +7,10 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 
 include(CTest)
 enable_testing()
-add_subdirectory(src)
-add_subdirectory(test)
+add_subdirectory(src) # 项目代码
+add_subdirectory(test) # 测试代码
+add_subdirectory(tmp) # 用来临时调试代码bug
 
-# tmp.cpp 用来进行临时的调试代码bug
-add_executable(tmp tmp.cpp)
-target_link_libraries(tmp ${PROJECT_NAME}_lib)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

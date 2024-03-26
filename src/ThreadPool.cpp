@@ -101,7 +101,7 @@ void *ThreadPool::worker(void *arg)
       lock.unlock();
       pool->threadExit();
     }
-
+    
     auto task = pool->taskQueue->takeTask();
     pool->busyNum++;
     lock.unlock();
